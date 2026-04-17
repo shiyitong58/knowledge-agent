@@ -5,7 +5,7 @@ import sys
 from typing import Any
 
 from openai import OpenAI
-
+from notes_store import save_card
 
 
 
@@ -83,6 +83,7 @@ def main() -> None:
         raise ValueError("Input text cannot be empty.")
 
     card = build_knowledge_card(text)
+    save_card(card)
     print(json.dumps(card, ensure_ascii=False, indent=2))
 
 

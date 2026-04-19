@@ -1,0 +1,281 @@
+[
+  {
+    "topic": "AI Agent",
+    "summary": "AI Agent 是一种能够感知环境、自主决策并执行任务的人工智能系统，通常基于大型语言模型（LLM）构建，用于自动化处理复杂任务。",
+    "keywords": [
+      "AI Agent",
+      "人工智能代理",
+      "自主决策",
+      "任务自动化",
+      "LLM"
+    ],
+    "suggested_category": "人工智能/机器学习",
+    "deepen": [
+      "AI Agent 的核心架构和工作原理是什么？",
+      "AI Agent 在实际应用中有哪些常见场景和挑战？"
+    ]
+  },
+  {
+    "topic": "MCP（模型上下文协议）",
+    "summary": "MCP（Model Context Protocol）是一种协议，用于在AI系统和外部工具或数据源之间建立连接，它不是传统意义上的中间商，而是作为技术中介，促进LLM与外部资源的交互。",
+    "keywords": [
+      "MCP",
+      "模型上下文协议",
+      "AI Agent",
+      "LLM",
+      "协议"
+    ],
+    "suggested_category": "AI/LLM技术",
+    "deepen": [
+      "MCP如何具体实现LLM与外部工具的集成？",
+      "MCP与其他AI协议（如Function Calling）有何区别？"
+    ]
+  },
+  {
+    "topic": "Function Calling",
+    "summary": "Function Calling 是大型语言模型（LLM）的一种能力，允许模型根据用户查询或上下文，识别并调用外部函数或工具来执行特定任务，从而扩展模型的功能，实现更复杂的交互和自动化。",
+    "keywords": [
+      "Function Calling",
+      "LLM",
+      "外部函数",
+      "工具调用",
+      "AI Agent"
+    ],
+    "suggested_category": "AI / LLM 技术",
+    "deepen": [
+      "Function Calling 在 AI Agent 架构中如何实现？",
+      "Function Calling 与 MCP 的关系是什么？"
+    ]
+  },
+  {
+    "topic": "AI Agent 的组成",
+    "summary": "AI Agent 主要由核心组件构成，包括感知模块、决策模块、执行模块、记忆模块和通信模块，这些模块协同工作以实现自主或半自主的目标导向行为。",
+    "keywords": [
+      "AI Agent",
+      "感知模块",
+      "决策模块",
+      "执行模块",
+      "记忆模块",
+      "通信模块"
+    ],
+    "suggested_category": "人工智能/智能体技术",
+    "deepen": [
+      "AI Agent 的感知模块如何与环境交互？",
+      "决策模块在 AI Agent 中如何实现推理和规划？"
+    ]
+  },
+  {
+    "topic": "Agent与Workflow的区别",
+    "summary": "Agent是能够自主执行任务的智能实体，而Workflow是定义任务执行顺序和逻辑的流程框架。",
+    "keywords": [
+      "AI Agent",
+      "Workflow",
+      "任务执行",
+      "流程管理"
+    ],
+    "suggested_category": "AI系统与自动化",
+    "deepen": [
+      "Agent在Workflow中如何发挥作用？",
+      "如何设计一个结合Agent和Workflow的系统？"
+    ]
+  },
+  {
+    "topic": "Agent开发框架",
+    "summary": "Agent开发框架是用于构建和部署AI Agent的工具集，提供模块化组件、API接口和运行环境，以简化Agent的创建、管理和集成过程。",
+    "keywords": [
+      "AI Agent",
+      "开发框架",
+      "模块化",
+      "API",
+      "运行环境"
+    ],
+    "suggested_category": "AI/LLM系统",
+    "deepen": [
+      "主流Agent开发框架有哪些及其特点？",
+      "如何根据应用场景选择合适的Agent框架？"
+    ]
+  },
+  {
+    "topic": "Function Calling",
+    "summary": "Function Calling 是大型语言模型（LLM）的一种能力，允许模型根据用户请求识别并调用外部工具或函数，以执行特定任务，如获取实时数据、进行计算或操作外部系统。",
+    "keywords": [
+      "Function Calling",
+      "LLM",
+      "工具调用",
+      "API集成"
+    ],
+    "suggested_category": "AI Agent 与 LLM 技术",
+    "deepen": [
+      "Function Calling 在 AI Agent 架构中如何实现？",
+      "Function Calling 与 MCP（Model Context Protocol）有何关联？"
+    ]
+  },
+  {
+    "topic": "技能（Skill）",
+    "summary": "在AI Agent和LLM语境中，技能指代模型或系统能够执行的具体任务或功能，通常通过工具调用、函数执行或特定指令实现，以增强AI的实用性和交互能力。",
+    "keywords": [
+      "技能",
+      "AI Agent",
+      "工具调用",
+      "任务执行",
+      "功能"
+    ],
+    "suggested_category": "AI/LLM系统概念",
+    "deepen": [
+      "技能在AI Agent架构中如何实现？",
+      "技能与工具（Tool）或函数调用（Function Calling）有何区别？"
+    ]
+  },
+  {
+    "topic": "Function Calling",
+    "summary": "Function calling 是一种在大型语言模型（LLM）系统中使用的技术，允许模型根据用户查询或上下文，动态调用外部函数或工具来执行特定任务，从而扩展模型的能力，使其能够处理实时数据、计算或外部操作。",
+    "keywords": [
+      "Function Calling",
+      "LLM",
+      "AI Agent",
+      "工具调用",
+      "外部函数"
+    ],
+    "suggested_category": "AI / LLM 技术",
+    "deepen": [
+      "Function calling 在 AI Agent 架构中如何实现？",
+      "Function calling 与 MCP（Model Context Protocol）有何关联？"
+    ]
+  },
+  {
+    "topic": "AI Agent 的组成",
+    "summary": "AI Agent 通常由多个核心组件构成，以实现自主决策和任务执行，主要包括感知模块、决策模块、执行模块和记忆模块。",
+    "keywords": [
+      "AI Agent",
+      "感知模块",
+      "决策模块",
+      "执行模块",
+      "记忆模块"
+    ],
+    "suggested_category": "人工智能/LLM系统",
+    "deepen": [
+      "AI Agent 的感知模块如何与环境交互？",
+      "AI Agent 的决策模块如何利用 LLM 进行推理？"
+    ]
+  },
+  {
+    "topic": "AI Agent",
+    "summary": "AI Agent（人工智能代理）是一种能够感知环境、自主决策并执行任务以达成目标的智能系统，通常基于大型语言模型（LLM）构建，在AI和LLM系统中用于自动化处理复杂任务。",
+    "keywords": [
+      "AI Agent",
+      "人工智能代理",
+      "LLM",
+      "自主决策",
+      "任务执行"
+    ],
+    "suggested_category": "人工智能/智能系统",
+    "deepen": [
+      "AI Agent的核心架构和工作原理是什么？",
+      "AI Agent在实际应用中有哪些典型场景和挑战？"
+    ]
+  },
+  {
+    "topic": "Agent与LLM之间的关系",
+    "summary": "Agent（智能代理）通常指能自主执行任务的系统，而LLM（大语言模型）是处理自然语言的核心组件，两者关系是Agent利用LLM的能力（如理解和生成文本）来实现更复杂的交互和决策，LLM作为Agent的关键工具或大脑。",
+    "keywords": [
+      "Agent",
+      "LLM",
+      "智能代理",
+      "大语言模型",
+      "AI系统"
+    ],
+    "suggested_category": "人工智能/LLM系统",
+    "deepen": [
+      "Agent如何集成LLM来实现具体任务？",
+      "LLM在Agent架构中的角色有哪些变体？"
+    ]
+  },
+  {
+    "topic": "系统提示与用户提示",
+    "summary": "在大型语言模型（LLM）交互中，系统提示用于设定AI助手的角色、行为和约束，用户提示则是用户提供的具体问题或指令，两者共同指导AI生成回复。",
+    "keywords": [
+      "系统提示",
+      "用户提示",
+      "LLM",
+      "AI助手",
+      "交互指导"
+    ],
+    "suggested_category": "AI系统与提示工程",
+    "deepen": [
+      "系统提示如何影响AI回复的风格和准确性？",
+      "用户提示的最佳实践有哪些以提高AI响应质量？"
+    ]
+  },
+  {
+    "topic": "MCP (Model Context Protocol)",
+    "what_it_is": "MCP是一种开放协议，用于在AI模型（如LLM）和外部数据源或工具之间建立标准化的连接和交互方式。它类似于一个中间件或桥梁，但不是传统意义上的中间商，因为它不涉及商业交易，而是专注于技术层面的数据交换和功能调用。",
+    "why_it_exists": "在AI和Agent系统中，模型需要访问外部数据（如数据库、API、文件）或使用工具（如计算器、搜索）来扩展其能力。MCP的出现是为了解决模型与这些外部资源之间的兼容性和标准化问题，避免每个系统都实现自定义接口，从而提高开发效率和互操作性。",
+    "what_it_does": "MCP在系统中充当一个协议层，它定义了模型如何请求数据、执行工具操作以及处理响应。它简化了模型与外部世界的集成，使得开发者可以轻松地为AI添加新功能，而不必修改模型本身，从而促进模块化和可扩展的AI应用构建。",
+    "related_to": [
+      "LLM (Large Language Model)",
+      "Agent",
+      "API (Application Programming Interface)",
+      "Tool Calling",
+      "RAG (Retrieval-Augmented Generation)"
+    ],
+    "common_confusions": [
+      "将MCP误认为是商业中介或代理，实际上它是技术协议，不涉及交易或决策；",
+      "混淆MCP与具体工具或数据源，MCP是连接它们的协议，而不是工具本身；",
+      "认为MCP只适用于特定模型，实际上它是设计为跨模型和平台通用的。"
+    ],
+    "my_next_question": [
+      "MCP与传统的API网关有什么区别？",
+      "在实际应用中，如何实现一个基于MCP的Agent系统？"
+    ],
+    "related": {
+      "related": [
+        {
+          "topic": "解析失败",
+          "reason": "模型返回非法JSON：{\n    \"related\": [\n        {\n            \"topic\": \"Function Calling\",\n            \"reason\": \"MCP协议的核",
+          "relation_type": "error"
+        }
+      ]
+    }
+  },
+  {
+    "topic": "MCP",
+    "what_it_is": "MCP（Model Context Protocol）是一个开放协议，用于标准化大型语言模型（LLM）与外部工具、数据源和服务的交互方式。它类似于一个中间层，允许LLM通过统一的接口访问和操作外部资源，而无需直接处理复杂的集成细节。",
+    "why_it_exists": "随着LLM和Agent系统的发展，模型需要与多种外部系统（如数据库、API、文件系统）交互以执行复杂任务。传统方法中，每个集成都需要定制开发，导致碎片化、高成本和维护困难。MCP的出现是为了解决这些互操作性问题，提供一个通用、可扩展的框架，简化LLM与外部世界的连接。",
+    "what_it_does": "在AI/Agent系统中，MCP充当一个桥梁或中间商角色，它定义了标准化的请求-响应格式和协议，使得LLM可以轻松调用外部工具或获取数据。这增强了Agent的能力，使其能够执行更广泛的任务（如数据分析、实时信息查询），同时降低了系统集成的复杂性。",
+    "related_to": [
+      "LLM（大型语言模型）",
+      "Agent（智能体）",
+      "API（应用程序接口）",
+      "工具调用（Tool Calling）",
+      "插件系统（Plugin System）"
+    ],
+    "common_confusions": [
+      "MCP不是具体的软件或产品，而是一个协议或标准，容易与特定实现（如某个MCP客户端）混淆。",
+      "MCP与传统的中间件或代理服务器不同，它专注于LLM语境下的交互标准化，而不是通用的数据传输或路由。",
+      "MCP不应被误解为仅用于数据交换，它还支持工具调用和状态管理，是Agent系统的一部分。"
+    ],
+    "my_next_question": [
+      "MCP与传统的API网关或中间件有何区别？",
+      "在实际应用中，如何实现一个基于MCP的Agent系统？"
+    ],
+    "related": {
+      "related": [
+        {
+          "topic": "MCP (Model Context Protocol)",
+          "reason": "主题完全一致，直接对应新卡片",
+          "relation_type": "补充"
+        },
+        {
+          "topic": "Agent与LLM之间的关系",
+          "reason": "MCP可能涉及AI系统或LLM的上下文管理，与Agent和LLM的交互相关",
+          "relation_type": "补充"
+        },
+        {
+          "topic": "AI Agent",
+          "reason": "MCP可能作为AI Agent或智能代理的组成部分或相关协议",
+          "relation_type": "补充"
+        }
+      ]
+    }
+  }
+]

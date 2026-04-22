@@ -11,6 +11,8 @@ from openai import OpenAI
 from notes_store import save_card, load_cards
 from embedding_utils import get_embedding, cosine_similarity
 
+
+
 def read_input_text() -> str:
     parser = argparse.ArgumentParser(
         description="Turn text into a structured learning card JSON."
@@ -146,46 +148,43 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
     return json.loads(json_str)
 
 
-
 def find_related_cards(new_card, existing_cards, top_k=3):
     if not existing_cards:
         return []
 
-    new_topic = normalize_topic(new_card.get("topic", ""))
+    new_topic_norm = normalize_topic(new_card.get("topic", ""))
 
-    new_text = build_text(new_card)
-    new_emb = get_embedding(new_text)
+    # 🔥 用缓存
+    new_emb = new_card.get("embedding")
+    if new_emb is None:
+        new_emb = get_embedding(build_text(new_card))
 
     scored = []
 
     for c in existing_cards:
-        topic_norm = normalize_topic(c.get("topic", ""))
+        topic = c.get("topic", "")
+        topic_norm = normalize_topic(topic)
 
-        if topic_norm == new_topic:
+        if topic_norm == new_topic_norm:
             continue
 
-        text = build_text(c)
-        emb = get_embedding(text)
+        # 🔥 用缓存
+        emb = c.get("embedding")
+        if emb is None:
+            emb = get_embedding(build_text(c))
 
         score = cosine_similarity(new_emb, emb)
-
         scored.append((score, c))
 
     scored.sort(key=lambda x: x[0], reverse=True)
 
     results = []
     seen = set()
-    new_topic_norm = normalize_topic(new_card.get("topic", ""))
 
     for score, c in scored:
         topic = c.get("topic", "")
         topic_norm = normalize_topic(topic)
 
-    # 1. 去掉和当前新卡片本身重复的概念
-        if topic_norm == new_topic_norm:
-            continue
-
-    # 2. 去掉召回结果里彼此重复的概念
         if topic_norm in seen:
             continue
 
@@ -202,10 +201,6 @@ def find_related_cards(new_card, existing_cards, top_k=3):
 
     return results
 
-    
-
-
-
 
 
 def main() -> None:
@@ -216,6 +211,7 @@ def main() -> None:
     card = build_knowledge_card(text)
     card = normalize_card(card)
 
+    card["embedding"] = get_embedding(build_text(card))
     card["id"] = str(uuid.uuid4())
     card["created_at"] = datetime.now().isoformat(timespec="seconds")
 
@@ -232,7 +228,11 @@ def main() -> None:
         print("- 暂无")
 
     save_card(card)
-    print(json.dumps(card, indent=2, ensure_ascii=False))
+    card_to_print = dict(card)
+    card_to_print.pop("embedding", None)
+
+    print(json.dumps(card_to_print, indent=2, ensure_ascii=False))
+
 
 
 if __name__ == "__main__":

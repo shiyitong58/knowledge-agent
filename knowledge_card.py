@@ -43,19 +43,88 @@ def extract_json(text: str):
 
 
 def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
-    fixed = []
-    for item in card.get("connects_to", []):
-        if isinstance(item, dict) and "topic" in item:
-            fixed.append(item)
-
-    card["connects_to"] = fixed
-
+    # 基础字段兜底
+    card.setdefault("topic", "")
+    card.setdefault("core_takeaway", "")
     card.setdefault("mental_model", "")
+    card.setdefault("why_it_matters", "")
     card.setdefault("boundary", [])
+    card.setdefault("connects_to", [])
     card.setdefault("likely_confusion", [])
     card.setdefault("next_best_question", [])
+    card.setdefault("related_cards", [])
+
+    # boundary：只保留字符串
+    if not isinstance(card["boundary"], list):
+        card["boundary"] = []
+    card["boundary"] = [x for x in card["boundary"] if isinstance(x, str)]
+
+    # connects_to：只保留合法结构
+    fixed_connects = []
+    if isinstance(card["connects_to"], list):
+        for item in card["connects_to"]:
+            if not isinstance(item, dict):
+                continue
+
+            topic = item.get("topic")
+            relation = item.get("relation", "补充")
+            why = item.get("why", "")
+
+            if not isinstance(topic, str) or not topic.strip():
+                continue
+            if not isinstance(relation, str):
+                relation = "补充"
+            if not isinstance(why, str):
+                why = ""
+
+            fixed_connects.append({
+                "topic": topic.strip(),
+                "relation": relation.strip() or "补充",
+                "why": why.strip()
+            })
+    card["connects_to"] = fixed_connects
+
+    # likely_confusion：只保留字符串
+    if not isinstance(card["likely_confusion"], list):
+        card["likely_confusion"] = []
+    card["likely_confusion"] = [
+        x for x in card["likely_confusion"] if isinstance(x, str)
+    ]
+
+    # next_best_question：只保留字符串
+    if not isinstance(card["next_best_question"], list):
+        card["next_best_question"] = []
+    card["next_best_question"] = [
+        x for x in card["next_best_question"] if isinstance(x, str)
+    ]
+
+    # related_cards：只保留合法结构
+    fixed_related = []
+    if isinstance(card["related_cards"], list):
+        for item in card["related_cards"]:
+            if not isinstance(item, dict):
+                continue
+
+            topic = item.get("topic")
+            relation_type = item.get("relation_type", "语义相似")
+            reason = item.get("reason", "")
+
+            if not isinstance(topic, str) or not topic.strip():
+                continue
+            if not isinstance(relation_type, str):
+                relation_type = "语义相似"
+            if not isinstance(reason, str):
+                reason = ""
+
+            fixed_related.append({
+                "topic": topic.strip(),
+                "relation_type": relation_type.strip() or "语义相似",
+                "reason": reason.strip()
+            })
+    card["related_cards"] = fixed_related
 
     return card
+
 
 
 def normalize_topic(topic: str) -> str:
@@ -218,6 +287,10 @@ def main() -> None:
     existing_cards = load_cards()
     related_cards = find_related_cards(card, existing_cards)
     card["related_cards"] = related_cards
+
+    # 🔥 再过一遍，修 related_cards
+    card = normalize_card(card)
+
 
     print("\n推荐关联：")
     if related_cards:

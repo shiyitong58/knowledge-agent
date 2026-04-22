@@ -803,5 +803,59 @@
         "relation_type": "补充"
       }
     ]
+  },
+  {
+    "topic": "MCP",
+    "core_takeaway": "MCP是Model Context Protocol的缩写，它是一个开源协议，用于标准化LLM与外部工具或数据源之间的安全、结构化交互。",
+    "mental_model": "想象MCP就像是一个通用的电源插座，让不同的AI模型（如手机充电器）可以安全、方便地连接到各种外部工具（如电脑、打印机），而无需担心兼容性或安全问题。",
+    "why_it_matters": "在AI/Agent知识体系中，MCP解决了LLM与外部系统集成时的碎片化和安全问题，促进了工具生态的互操作性，是构建复杂AI应用（如智能助手或自动化代理）的关键基础设施，因为它让模型能更可靠地访问实时数据或执行特定任务。",
+    "boundary": [
+      "MCP不是一个具体的AI模型或算法，而是一个通信协议。",
+      "不要和API网关或中间件混淆，MCP专注于为LLM设计，强调标准化和安全性，而非通用网络通信。"
+    ],
+    "connects_to": [
+      {
+        "topic": "LLM",
+        "relation": "上下位",
+        "why": "MCP是为LLM设计的协议，帮助LLM更有效地与外部工具交互，是LLM功能扩展的基础。"
+      },
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "在构建AI Agent时，MCP提供了标准化的工具集成方式，使Agent能安全调用外部资源，增强其自主性和实用性。"
+      },
+      {
+        "topic": "API",
+        "relation": "对比",
+        "why": "MCP与API都涉及系统间通信，但MCP是专门为LLM优化的协议，强调结构化、安全性和易用性，而API更通用。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP是某个特定公司的产品或模型，实际上它是一个开源协议，由社区推动。",
+      "用户可能混淆MCP与类似协议（如OpenAI的插件系统），但MCP更注重跨平台和标准化，不绑定于单一供应商。"
+    ],
+    "next_best_question": [
+      "MCP如何具体实现LLM与工具的安全交互，有哪些关键组件或机制？",
+      "在实际应用中，MCP相比其他集成方案（如自定义API）有哪些优势和局限性？"
+    ],
+    "id": "6b21367d-0137-4f67-99b4-2adf12e39fee",
+    "created_at": "2026-04-22T21:56:52",
+    "related_cards": [
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.943"
+      },
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.935"
+      },
+      {
+        "topic": "MCP与API的区别",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.793"
+      }
+    ]
   }
 ]

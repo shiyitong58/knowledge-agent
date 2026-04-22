@@ -2,12 +2,13 @@ import argparse
 import json
 import sys
 import uuid
+import os
 from datetime import datetime
 from typing import Any
 
 from openai import OpenAI
 from notes_store import save_card, load_cards
-
+from embedding_utils import get_embedding, cosine_similarity
 
 def read_input_text() -> str:
     parser = argparse.ArgumentParser(
@@ -53,11 +54,23 @@ def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
 
     return card
 
+
+def build_text(card):
+    return f"""
+主题: {card.get("topic", "")}
+核心: {card.get("core_takeaway", "")}
+意义: {card.get("why_it_matters", "")}
+"""
+
 def normalize_topic(topic: str) -> str:
     return topic.lower().replace("（", "(").replace("）", ")").strip()
 
 def build_knowledge_card(text: str) -> dict[str, Any]:
-    client = OpenAI(base_url="https://api.deepseek.com")
+    # client = OpenAI(base_url="https://api.deepseek.com")
+    client = OpenAI(
+    base_url="https://api.deepseek.com",
+    api_key=os.getenv("DEEPSEEK_API_KEY")
+)
     model = "deepseek-chat"
 
     system_prompt = """
@@ -122,116 +135,45 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
 
     return json.loads(json_str)
 
-
-def find_related_cards(new_card: dict[str, Any], existing_cards: list[dict[str, Any]]) -> list[dict[str, str]]:
+def find_related_cards(new_card, existing_cards, top_k=3):
     if not existing_cards:
         return []
-    
-    # 🔥 过滤掉“同 topic 的卡片”（避免自己推荐自己）
-    existing_cards = [
-        c for c in existing_cards
-        if normalize_topic(c.get("topic", "")) != normalize_topic(new_card.get("topic", ""))
-    ]
-    sample_cards = [
-        {
+
+    new_topic = normalize_topic(new_card.get("topic", ""))
+
+    new_text = build_text(new_card)
+    new_emb = get_embedding(new_text)
+
+    scored = []
+
+    for c in existing_cards:
+        topic_norm = normalize_topic(c.get("topic", ""))
+
+        if topic_norm == new_topic:
+            continue
+
+        text = build_text(c)
+        emb = get_embedding(text)
+
+        score = cosine_similarity(new_emb, emb)
+
+        scored.append((score, c))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+
+    results = []
+
+    for score, c in scored[:top_k]:
+        results.append({
             "topic": c.get("topic", ""),
-            "core_takeaway": c.get("core_takeaway", ""),
-            "why_it_matters": c.get("why_it_matters", "")
-        }
-        for c in existing_cards[-5:]
-    ]
+            "relation_type": "语义相似",
+            "reason": f"similarity={score:.3f}"
+        })
 
-    new_card_simple = {
-        "topic": new_card.get("topic", ""),
-        "core_takeaway": new_card.get("core_takeaway", ""),
-        "why_it_matters": new_card.get("why_it_matters", "")
-    }
+    return results
 
-    client = OpenAI(base_url="https://api.deepseek.com")
 
-    prompt = f"""
-你是一个知识结构分析助手。
 
-任务：
-找出最相关的 1~3 个已有卡片，并说明为什么相关。
-
-强制要求：
-1. 只返回 JSON
-2. 不要输出任何解释文字
-3. 不要使用 markdown
-4. 如果没有合适的，返回：{{"related_cards": []}}
-
-输出格式：
-{{
-  "related_cards": [
-    {{
-      "topic": "卡片主题",
-      "reason": "为什么相关",
-      "relation_type": "补充/对比/上下位关系"
-    }}
-  ]
-}}
-
-新卡片：
-{new_card_simple}
-
-已有卡片：
-{sample_cards}
-"""
-
-    response = client.chat.completions.create(
-        model="deepseek-chat",
-        messages=[
-            {
-                "role": "system",
-                "content": "你是一个严格输出 JSON 的助手，不允许输出任何解释或多余文本。"
-            },
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        response_format={"type": "json_object"},
-        max_tokens=250,
-    )
-
-    content = response.choices[0].message.content
-    if not content:
-        return []
-
-    json_str = extract_json(content)
-    if not json_str:
-        return []
-
-    try:
-        parsed = json.loads(json_str)
-        results = parsed.get("related_cards", [])
-
-# 🔥 第1步：过滤掉和新卡片相同的 topic
-        filtered = [
-            item for item in results
-            if normalize_topic(item.get("topic", "")) != normalize_topic(new_card.get("topic", ""))
-        ]
-
-# 🔥 第2步：去重（防止 MCP 两种写法）
-        seen = set()
-        unique = []
-
-        for item in filtered:
-            key = normalize_topic(item.get("topic", ""))
-            if key not in seen:
-                seen.add(key)
-                unique.append(item)
-
-        return unique
-    except json.JSONDecodeError:
-        return [
-            {
-                "topic": "解析失败",
-                "reason": f"无法解析 JSON：{content[:100]}",
-                "relation_type": "error"
-            }
-        ]
 
 
 def main() -> None:

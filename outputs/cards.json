@@ -517,5 +517,602 @@
         "relation_type": "补充"
       }
     ]
+  },
+  {
+    "topic": "MCP（Model Context Protocol）",
+    "core_takeaway": "MCP 是一个标准化的协议，用于在 AI 模型和外部工具/数据源之间建立安全、高效的通信桥梁，而不是简单的中间商。",
+    "why_it_matters": "MCP 在 AI 知识体系中至关重要，因为它解决了模型与外部世界交互时的标准化和安全问题，是构建可扩展、可维护 Agent 系统的关键基础设施，能提升模型的实际应用能力。",
+    "connects_to": [
+      {
+        "topic": "Agent 架构",
+        "relation": "补充",
+        "why": "MCP 是 Agent 架构中连接模型与工具的核心组件，帮助 Agent 更灵活地调用外部功能。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "对比",
+        "why": "MCP 提供了比传统 API 更统一和安全的接口，减少了模型与多个工具集成的复杂性。"
+      },
+      {
+        "topic": "RAG（检索增强生成）",
+        "relation": "上下位",
+        "why": "MCP 可以作为 RAG 系统的一部分，通过协议标准化数据源的接入，提升检索效率和准确性。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能将 MCP 误解为简单的中间商或代理，而忽略了其作为标准化协议在安全性和互操作性方面的价值。",
+      "用户可能混淆 MCP 与其他通信协议（如 HTTP、gRPC），但 MCP 是专门为 AI 模型上下文设计的，更注重模型与工具的语义对齐。"
+    ],
+    "next_best_question": [
+      "MCP 如何在实际应用中提升 AI 模型的安全性和效率，具体有哪些实现案例？",
+      "与传统的工具调用方式相比，MCP 在 Agent 系统中带来了哪些根本性的改进？"
+    ],
+    "id": "4bbf7f3f-dbe9-400a-a338-65af2bf383e1",
+    "created_at": "2026-04-22T19:51:20",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "MCP 是一个协议，用于在 AI 模型和外部工具/数据源之间建立通信桥梁，而 function calling 是让 LLM 调用外部工具或函数的机制，两者都涉及模型与外部世界的交互，MCP 可以视为实现 function calling 的标准化和安全基础设施。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "MCP (Model Context Protocol)",
+    "core_takeaway": "MCP是一个标准化协议，用于连接AI模型（如LLM）与外部工具和数据源，实现安全、高效的信息交换和功能扩展。",
+    "mental_model": "想象MCP就像AI世界的“通用充电接口”，它让不同的AI模型（如手机）能轻松、安全地接入各种外部工具和数据源（如充电器、数据线），而无需为每个工具定制连接方式，从而提升互操作性和扩展性。",
+    "why_it_matters": "在AI/Agent知识体系中，MCP解决了模型与外部环境交互的碎片化问题，是构建可扩展、安全AI系统的关键基础设施。它使得AI能更灵活地访问实时数据、执行复杂任务，推动Agent从封闭模型向开放工具集成演进，对开发高效、可靠的AI应用至关重要。",
+    "boundary": [
+      "MCP不是具体的AI模型或工具，而是一个通信协议和标准，不要把它误认为是某个软件或服务本身。",
+      "不要和API网关或中间件混淆，MCP更专注于AI模型与工具间的标准化交互，而非通用数据传输或系统集成。"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "MCP为Agent提供了标准化方式来接入外部工具和数据，是Agent实现复杂任务执行和环境交互的基础，帮助Agent从理论概念走向实际应用。"
+      },
+      {
+        "topic": "LLM (Large Language Model)",
+        "relation": "上下位",
+        "why": "MCP是LLM的扩展协议，它使LLM能安全、高效地调用外部功能，弥补LLM在实时性、专业性和执行能力上的局限，是LLM应用落地的关键支撑。"
+      },
+      {
+        "topic": "API (Application Programming Interface)",
+        "relation": "对比",
+        "why": "MCP类似于专门为AI模型设计的API协议，但更侧重于标准化和安全性，避免传统API在AI场景中的适配复杂性和风险，是AI交互的优化版本。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP是中间商或代理服务，但实际上它是一个协议标准，不涉及商业中介或直接数据处理，而是定义如何安全连接。",
+      "用户可能混淆MCP与具体工具（如LangChain），但MCP是底层协议，而LangChain等框架可能基于MCP实现，前者是标准，后者是应用。"
+    ],
+    "next_best_question": [
+      "MCP如何确保AI模型与外部工具交互的安全性，比如防止数据泄露或恶意攻击？",
+      "在实际开发中，如何使用MCP来构建一个能调用多种工具的AI Agent，有哪些最佳实践或案例？"
+    ],
+    "id": "2402eeda-d12d-4a42-971f-a11a69be7b3a",
+    "created_at": "2026-04-22T19:52:25",
+    "related_cards": [
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "reason": "主题相同，都涉及MCP协议，核心内容和重要性高度一致，可直接关联或更新信息。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling",
+        "reason": "MCP协议用于连接AI模型与外部工具，而function calling是实现这种连接的具体能力，两者在扩展AI功能方面密切相关。",
+        "relation_type": "上下位关系"
+      }
+    ]
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让 LLM 能够调用外部工具或函数来执行具体任务（如计算、搜索、API 交互）的机制，从而扩展其能力边界。",
+    "mental_model": "想象 LLM 是一个聪明的顾问，它知道很多知识，但不会自己动手做具体事；function calling 就像给它一套工具（如计算器、搜索引擎），当需要时，它可以“调用”这些工具来完成任务，然后继续提供建议。",
+    "why_it_matters": "在 AI / Agent 知识体系中，function calling 至关重要，因为它解决了 LLM 的局限性（如无法实时访问数据或执行精确计算），使 LLM 能整合外部资源，成为更实用的智能体（Agent），推动从纯文本生成到实际应用（如自动化、交互系统）的转变。",
+    "boundary": [
+      "function calling 不是 LLM 内部固有的能力，而是通过外部接口（如 API）实现的附加功能",
+      "不要和 LLM 的文本生成能力混淆，它侧重于调用而非直接输出文本"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "function calling 是构建 Agent 的核心组件之一，Agent 利用它来执行动作（如调用工具），实现自主决策和任务完成。"
+      },
+      {
+        "topic": "LLM 局限性",
+        "relation": "纠偏",
+        "why": "function calling 直接应对 LLM 的局限性（如缺乏实时性、精确性），通过外部工具弥补这些不足，提升实用性。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "上下位",
+        "why": "function calling 通常依赖于 API 集成来调用外部函数，是 API 在 AI 语境下的具体应用形式。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 function calling 是 LLM 自动生成的代码执行，实际上它需要预定义函数和外部系统支持",
+      "用户可能混淆 function calling 和 prompt engineering，前者是调用工具，后者是优化输入以引导 LLM 输出"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何与 Agent 架构结合，以实现更复杂的任务自动化？",
+      "在实现 function calling 时，有哪些常见的技术挑战（如安全性、错误处理），以及如何解决？"
+    ],
+    "id": "07c03b2b-80a8-4a4d-90bf-720637bfd381",
+    "created_at": "2026-04-22T19:53:39",
+    "related_cards": [
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "MCP 是连接 AI 模型与外部工具和数据源的协议，而 function calling 是 LLM 调用外部工具的机制，两者都涉及扩展 AI 能力，MCP 提供了标准化交互框架，function calling 是实现具体调用的方式，属于补充关系。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "reason": "MCP 作为协议解决模型与外部世界交互的标准化问题，function calling 作为机制实现 LLM 调用外部工具，两者在 AI/Agent 体系中共同支持模型能力扩展，属于补充关系。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "MCP（Model Context Protocol）",
+    "core_takeaway": "MCP是一个开放协议，用于标准化AI模型与外部工具或数据源的交互方式，旨在简化集成和提升互操作性。",
+    "mental_model": "想象MCP是AI模型的“通用插座”，让不同模型能轻松插入各种外部工具，就像电器插头适配不同插座一样，无需为每个工具定制连接。",
+    "why_it_matters": "理解MCP至关重要，因为它解决了AI生态中工具集成的碎片化问题，降低了开发门槛，促进了模型与外部资源的无缝协作，是构建高效Agent系统的关键基础设施。",
+    "boundary": [
+      "MCP不是一个具体的AI模型或工具，而是一个协议或标准",
+      "不要和API（如REST API）混淆，MCP是更高层次的抽象，专注于模型与工具的交互模式"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "MCP为Agent提供了标准化的工具调用机制，使Agent能更灵活地访问外部功能，是Agent实现复杂任务的基础"
+      },
+      {
+        "topic": "LLM（大语言模型）",
+        "relation": "上下位",
+        "why": "MCP作为协议，服务于LLM等模型，帮助它们扩展能力，但本身不是模型的一部分，而是模型与外部世界交互的桥梁"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP是一个具体的软件或库，实际上它是一个协议规范",
+      "用户可能混淆MCP与传统的API网关，MCP更专注于AI语境下的模型-工具交互，而非通用网络通信"
+    ],
+    "next_best_question": [
+      "MCP如何在实际项目中实现，有哪些开源实现或案例？",
+      "MCP与其他AI工具集成协议（如LangChain的工具调用）相比，有什么优势和局限性？"
+    ],
+    "id": "4ae376a1-0069-49e5-b0d5-e07c39f455f9",
+    "created_at": "2026-04-22T20:00:25",
+    "related_cards": [
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "主题相同，都讨论MCP作为标准化协议，用于连接AI模型与外部工具和数据源，提升互操作性和集成效率，是构建Agent系统的关键基础设施。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling",
+        "reason": "MCP与function calling相关，因为MCP旨在标准化AI模型与外部工具的交互方式，而function calling是实现这种交互的具体机制，两者共同支持AI模型扩展能力并与现实世界交互。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部工具或函数来执行特定任务的能力，从而扩展其功能范围。",
+    "mental_model": "想象 LLM 是一个聪明的顾问，它知道很多知识，但不会实际操作；function calling 就像是给这个顾问配了一个工具箱，当它需要做具体事情（比如查天气、订机票）时，可以调用工具箱里的工具来完成。",
+    "why_it_matters": "function calling 在 AI / Agent 知识体系中至关重要，因为它解决了 LLM 的局限性（如无法实时获取数据、执行计算或操作外部系统），使得 LLM 能够与真实世界交互，实现更复杂、实用的应用，是构建智能代理（Agent）和自动化系统的核心组件。",
+    "boundary": [
+      "function calling 不是 LLM 本身的内置功能，而是通过 API 或框架实现的扩展机制",
+      "不要和 LLM 的文本生成或推理能力混淆，它专注于外部动作的执行"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "上下位",
+        "why": "function calling 是 Agent 实现自主行动的关键部分，Agent 利用 function calling 来调用工具完成任务。"
+      },
+      {
+        "topic": "LLM 的局限性",
+        "relation": "补充",
+        "why": "function calling 直接应对 LLM 的局限性，如缺乏实时数据或执行能力，通过外部调用弥补这些不足。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "对比",
+        "why": "function calling 通常涉及 API 调用，但不同于简单的 API 使用，它需要 LLM 理解和触发这些调用。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 function calling 是 LLM 自动执行的，实际上它需要明确的指令和外部系统支持",
+      "用户可能混淆 function calling 和插件（plugin），两者类似，但 function calling 更通用，强调函数调用机制"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何与 LLM 的提示工程（prompt engineering）结合？",
+      "function calling 在构建 Agent 时，如何确保安全性和错误处理？"
+    ],
+    "id": "58ab1fcd-5a29-4b22-891a-f1e39ddde1fe",
+    "created_at": "2026-04-22T20:01:10",
+    "related_cards": [
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "reason": "function calling 是让 LLM 调用外部工具的能力，而 MCP 是标准化这种交互的协议，两者都涉及 LLM 与外部系统的连接和扩展，MCP 为 function calling 提供了基础设施和标准化框架。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "function calling 扩展 LLM 功能以执行外部任务，MCP 作为协议确保这种交互的安全和高效，两者在 AI/Agent 体系中协同工作，共同支持模型与真实世界的集成。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "MCP (Model Context Protocol)",
+    "core_takeaway": "MCP是一个开源协议，用于标准化AI模型与外部工具/数据源之间的安全、可扩展交互，简化Agent开发。",
+    "mental_model": "MCP就像是AI模型的“USB接口”，让不同模型可以即插即用地连接各种外部工具（如数据库、API），而无需为每个工具重写代码。",
+    "why_it_matters": "MCP在AI/Agent知识体系中至关重要，因为它解决了模型与外部世界交互的碎片化问题，降低了构建复杂Agent的门槛，促进了工具生态的统一和安全性，是推动AI应用从封闭走向开放的关键基础设施。",
+    "boundary": [
+      "MCP不是AI模型本身，也不是具体的工具或Agent，而是一个连接它们的协议层。",
+      "不要和API Gateway或中间件混淆，MCP专注于模型与工具间的标准化接口，而非通用网络代理。"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "MCP为Agent提供了标准化的工具调用方式，使Agent能更高效、安全地集成外部功能，是Agent架构中的关键组件。"
+      },
+      {
+        "topic": "LLM (Large Language Model)",
+        "relation": "上下位",
+        "why": "MCP作为协议，服务于LLM等模型，帮助它们突破自身限制，访问实时数据或执行动作，是模型能力扩展的下位概念。"
+      },
+      {
+        "topic": "RAG (Retrieval-Augmented Generation)",
+        "relation": "对比",
+        "why": "MCP和RAG都旨在增强模型能力，但MCP侧重于动态工具交互，而RAG侧重于静态知识检索，两者可互补使用。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP是某个特定公司或产品的专有技术，实际上它是开源协议，由社区推动。",
+      "用户容易混淆MCP与类似LangChain等框架，MCP是底层协议，而框架可能基于MCP实现更高级功能。"
+    ],
+    "next_best_question": [
+      "MCP如何确保模型与工具交互的安全性，比如防止未授权访问或数据泄露？",
+      "在实际项目中，如何选择使用MCP而不是其他集成方案（如自定义API）？"
+    ],
+    "id": "e4c19c9d-fdd7-4a58-9c01-c2f03e5eb70e",
+    "created_at": "2026-04-22T20:07:37",
+    "related_cards": [
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "reason": "主题相同，都是关于MCP协议，核心要点和重要性高度一致，都强调标准化、安全交互和简化Agent开发。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling",
+        "reason": "MCP协议用于标准化模型与外部工具的交互，而function calling是实现这种交互的具体机制，两者在AI/Agent体系中密切相关，共同扩展模型能力。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "RAG",
+    "core_takeaway": "RAG是一种结合检索和生成的技术，让AI在回答问题时能动态引用外部知识库，提高准确性和时效性。",
+    "mental_model": "想象一个聪明的助手，当被问到问题时，不是凭空回答，而是先去翻书（检索），然后根据书里的内容（知识库）来组织答案（生成），这样回答更靠谱、更具体。",
+    "why_it_matters": "在AI/Agent知识体系中，RAG解决了LLM的静态知识限制和幻觉问题，使AI能处理实时或特定领域信息，是构建可靠、可扩展应用的关键技术。",
+    "boundary": [
+      "RAG不是简单的搜索引擎，它不只是检索，而是将检索结果融入生成过程",
+      "不要和纯生成模型混淆，RAG依赖于外部知识库，而纯生成模型仅基于训练数据"
+    ],
+    "connects_to": [
+      {
+        "topic": "LLM",
+        "relation": "补充",
+        "why": "RAG通常与LLM结合，LLM负责生成，RAG提供检索到的知识，共同提升回答质量"
+      },
+      {
+        "topic": "Fine-tuning",
+        "relation": "对比",
+        "why": "RAG通过检索动态获取知识，而Fine-tuning是静态更新模型参数，两者都是增强AI能力的方法，但机制不同"
+      },
+      {
+        "topic": "Knowledge Base",
+        "relation": "上下位",
+        "why": "RAG依赖于知识库作为检索源，知识库是RAG实现的基础组件"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为RAG就是搜索引擎，但实际上它是检索和生成的融合过程",
+      "用户可能混淆RAG和Fine-tuning，RAG不改变模型参数，而是外部补充信息"
+    ],
+    "next_best_question": [
+      "RAG在实际应用中如何选择或构建合适的知识库？",
+      "RAG与Fine-tuning相比，在哪些场景下更有优势？"
+    ],
+    "id": "70dcc5dd-034b-46ca-8a37-a1d46005e212",
+    "created_at": "2026-04-22T20:10:12",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "RAG和function calling都旨在扩展LLM的能力，RAG通过检索外部知识库提高回答准确性，function calling通过调用外部工具执行任务，两者都解决LLM的静态知识或功能限制，使AI更实用和可靠。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "RAG和MCP都涉及AI模型与外部资源的交互，RAG专注于动态引用知识库以提高回答质量，MCP提供标准化协议连接模型与工具/数据源，两者共同支持构建可扩展、可靠的AI系统，解决模型与外部环境交互的挑战。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "function calling 与 tool 的区别",
+    "core_takeaway": "function calling 是 LLM 调用外部功能的机制，而 tool 是 LLM 可使用的具体功能实体。",
+    "mental_model": "想象 function calling 是打电话的动作（拨号、通话），而 tool 是电话本上的联系人（医生、律师），动作用来联系具体的人。",
+    "why_it_matters": "理解这个区别有助于在构建 AI 系统时，明确如何设计 LLM 与外部世界的交互接口，避免混淆 API 调用和功能实现，提升 Agent 的模块化和可扩展性。",
+    "boundary": [
+      "function calling 不是工具本身，而是调用工具的协议或过程",
+      "不要和 LLM 的内部推理能力混淆，它专门指外部功能调用"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "上下位",
+        "why": "Agent 利用 function calling 来使用 tools 完成任务，这是 Agent 架构的核心组件。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "补充",
+        "why": "function calling 常通过 API 实现，而 tools 可以是 API 封装的特定服务，如天气查询或数据库操作。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 function calling 和 tool 是同义词，但实际上一个是动作，一个是对象",
+      "用户可能混淆 function calling 与 LLM 的代码生成能力，后者是内部输出，而 function calling 涉及外部执行"
+    ],
+    "next_best_question": [
+      "在 AI 系统中，如何设计有效的 function calling 接口来优化工具使用效率？",
+      "有哪些常见的 tools 类型，它们如何通过 function calling 集成到 LLM 工作流中？"
+    ],
+    "id": "aa5b7de5-55aa-4678-92c7-9e8b36c16aca",
+    "created_at": "2026-04-22T20:14:19",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "新卡片的核心内容是区分 function calling 与 tool，而已有卡片详细解释了 function calling 的定义和重要性，提供了直接相关的背景知识，有助于理解新卡片中的对比。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "MCP（Model Context Protocol）",
+        "reason": "新卡片讨论 LLM 与外部世界的交互接口，MCP 作为标准化交互的协议，与新卡片中提到的模块化和可扩展性相关，提供了交互框架的上下文。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "Agent与Workflow的区别",
+    "core_takeaway": "Agent是能自主决策和执行的智能体，Workflow是定义任务执行顺序的流程框架。",
+    "mental_model": "Agent像是一个有头脑的工人，能自己判断怎么干活；Workflow像是一张任务清单，告诉工人先做什么后做什么。",
+    "why_it_matters": "理解Agent和Workflow的区别有助于构建高效AI系统：Agent提供灵活性和自主性，Workflow确保可靠性和可重复性，两者结合能优化任务执行。",
+    "boundary": [
+      "Agent不是简单的脚本或工具，它需要具备感知、决策和行动能力。",
+      "Workflow不是Agent本身，而是Agent可以遵循的规则或路径。"
+    ],
+    "connects_to": [
+      {
+        "topic": "LLM（大型语言模型）",
+        "relation": "补充",
+        "why": "Agent常基于LLM构建，以增强理解和生成能力；Workflow可以指导LLM在复杂任务中的调用顺序。"
+      },
+      {
+        "topic": "Multi-Agent Systems（多智能体系统）",
+        "relation": "上下位",
+        "why": "Agent是系统中的基本单元，Workflow可以协调多个Agent之间的交互和任务分配。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为Workflow就是Agent，但实际上Workflow是Agent执行任务时可用的框架或工具。",
+      "用户可能混淆Agent的自主性与Workflow的固定性，导致在设计中过度依赖一方而忽视另一方。"
+    ],
+    "next_best_question": [
+      "在实际AI项目中，如何平衡Agent的自主性和Workflow的结构化要求？",
+      "Agent和Workflow在哪些常见场景下需要结合使用，例如自动化客服或数据分析？"
+    ],
+    "id": "ff952f5a-6b1b-4bc0-9feb-dfb8c8cbe287",
+    "created_at": "2026-04-22T20:15:39",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "新卡片讨论Agent与Workflow的区别，function calling是构建Agent的核心组件，使Agent能调用外部工具执行任务，这与Agent的自主决策和执行能力相关，补充了Agent如何实现功能的具体机制。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling 与 tool 的区别",
+        "reason": "新卡片区分Agent和Workflow，而function calling与tool的区别涉及LLM与外部交互的设计，这与构建高效AI系统时如何组织Agent和Workflow的交互接口相关，提供了对比视角。",
+        "relation_type": "对比"
+      }
+    ]
+  },
+  {
+    "topic": "MCP与API的区别",
+    "core_takeaway": "MCP是AI代理间的通信协议，API是软件组件间的通用接口规范。",
+    "mental_model": "MCP就像AI代理之间的专用电话线，专门为它们聊天和协作而设计；API就像软件世界的通用插座，任何设备只要插上就能交换数据。",
+    "why_it_matters": "理解MCP和API的区别有助于把握AI代理生态中的通信层级：MCP专注于代理间的智能交互，而API是更底层的技术基础，两者共同支撑起复杂的AI系统。",
+    "boundary": [
+      "MCP不是一种编程语言或数据库",
+      "不要将MCP与通用的Web服务协议（如REST）混淆，它更针对AI代理场景"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent架构",
+        "relation": "补充",
+        "why": "MCP是Agent架构中实现多代理协作的关键组件，理解它有助于设计高效的代理系统。"
+      },
+      {
+        "topic": "REST API",
+        "relation": "对比",
+        "why": "REST API是通用的Web服务接口，而MCP是专门为AI代理定制的协议，对比可突出其特殊性。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP只是另一种API，而忽略了其针对AI代理的优化设计",
+      "用户可能混淆MCP与消息队列（如RabbitMQ），后者是更通用的异步通信工具"
+    ],
+    "next_best_question": [
+      "MCP在实际的AI代理系统中如何实现，有哪些开源工具或框架支持？",
+      "与传统的API相比，MCP在性能、安全性和可扩展性方面有哪些独特优势？"
+    ],
+    "id": "417fbf9d-5db9-4839-9dd1-2f4cf0ee5094",
+    "created_at": "2026-04-22T20:16:28",
+    "related_cards": [
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "新卡片讨论MCP与API的区别，而MCP卡片直接解释了MCP的定义和重要性，提供了MCP的详细背景，有助于理解新卡片中MCP作为AI代理间通信协议的角色。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling 与 tool 的区别",
+        "reason": "新卡片涉及MCP与API的区别，而function calling与tool的区别卡片讨论了LLM与外部交互的接口设计，这有助于从更广泛的AI系统交互角度理解新卡片中API作为通用接口规范的概念。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "Agent",
+    "core_takeaway": "Agent 是一个能感知环境、自主决策并执行动作以实现目标的智能实体。",
+    "mental_model": "想象一个虚拟的“智能助手”，它像人一样能看、能想、能行动，但存在于数字世界，比如一个能自动帮你订票的聊天机器人。",
+    "why_it_matters": "Agent 是 AI 从被动工具转向主动协作者的关键，它连接了感知、推理和行动，是构建更复杂、自主 AI 系统的基石，推动自动化、个性化服务和人机交互的进化。",
+    "boundary": [
+      "Agent 不是简单的程序或脚本，它不只是执行预设指令，而是能根据环境变化调整行为。",
+      "不要和 LLM 混淆，LLM 主要是生成文本，而 Agent 整合了 LLM 等多组件来执行完整任务。"
+    ],
+    "connects_to": [
+      {
+        "topic": "LLM",
+        "relation": "补充",
+        "why": "LLM 常作为 Agent 的“大脑”部分，提供语言理解和生成能力，但 Agent 还包括感知、规划和执行等其他组件。"
+      },
+      {
+        "topic": "Reinforcement Learning",
+        "relation": "对比",
+        "why": "两者都涉及决策，但 Reinforcement Learning 是训练方法，而 Agent 是应用这种方法的实体，Agent 可以基于 RL 或其他技术构建。"
+      },
+      {
+        "topic": "Multi-Agent Systems",
+        "relation": "上下位",
+        "why": "Multi-Agent Systems 是多个 Agent 协作或竞争的系统，理解单个 Agent 是理解这类复杂系统的基础。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能认为 Agent 就是聊天机器人，但聊天机器人只是 Agent 的一种形式，Agent 可以应用于更广泛的领域如自动驾驶。",
+      "用户可能混淆 Agent 和自动化工具，自动化工具通常缺乏自主决策能力，而 Agent 能适应新情况并做出智能选择。"
+    ],
+    "next_best_question": [
+      "Agent 的核心组件有哪些，比如感知、规划、执行是如何协同工作的？",
+      "在实际应用中，如何设计一个有效的 Agent 来处理复杂任务，比如结合 LLM 和工具调用？"
+    ],
+    "id": "7b2b6bed-8e99-4237-af4a-5dfa5ad35d9a",
+    "created_at": "2026-04-22T20:17:29",
+    "related_cards": [
+      {
+        "topic": "Agent与Workflow的区别",
+        "reason": "新卡片定义Agent为能感知环境、自主决策并执行动作的智能实体，而此卡片对比Agent与Workflow，有助于理解Agent在AI系统中的角色和自主性，补充了Agent如何与流程框架结合以实现更高效任务执行。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "MCP (Model Context Protocol)",
+        "reason": "新卡片强调Agent是AI从被动转向主动的关键，而MCP卡片涉及标准化Agent与外部工具交互的协议，两者相关，因为MCP支持Agent的开发和扩展，补充了Agent如何安全、可扩展地与环境交互。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "Prompt Engineering",
+    "core_takeaway": "Prompt engineering 是通过精心设计输入提示来引导大语言模型（LLM）生成更准确、更相关输出的技术。",
+    "mental_model": "就像给一个聪明的助手写指令清单：你写得越清晰、越具体，它就越能理解你的意图，而不是靠猜。",
+    "why_it_matters": "在 AI / Agent 知识体系中，prompt engineering 是连接人类意图和模型能力的关键桥梁，直接影响任务执行效果和用户体验，是构建高效 AI 应用的基础技能。",
+    "boundary": [
+      "这不是编程或代码开发，而是基于自然语言的交互设计",
+      "不要和模型训练或微调混淆，它不改变模型内部参数，只优化输入方式"
+    ],
+    "connects_to": [
+      {
+        "topic": "LLM 能力边界",
+        "relation": "补充",
+        "why": "理解 prompt engineering 能帮助你探索 LLM 的极限，知道如何通过提示来激发或规避某些能力"
+      },
+      {
+        "topic": "Agent 设计",
+        "relation": "上下位",
+        "why": "在构建 Agent 时，prompt engineering 是核心组成部分，用于定义 Agent 的行为和决策逻辑"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 prompt engineering 是万能的，能解决所有模型缺陷，但实际上它受限于模型本身的能力",
+      "用户可能混淆 prompt engineering 和传统编程，试图用代码逻辑来设计提示，而忽略了自然语言的灵活性和上下文依赖"
+    ],
+    "next_best_question": [
+      "如何设计一个有效的 prompt 来让 LLM 执行复杂任务，比如多步骤推理或创意生成？",
+      "在 Agent 系统中，prompt engineering 如何与其他组件（如记忆、工具使用）协同工作？"
+    ],
+    "id": "961c8d0a-c160-41aa-9086-2afaf4789d0d",
+    "created_at": "2026-04-22T20:20:02",
+    "related_cards": [
+      {
+        "topic": "Agent",
+        "reason": "Prompt engineering 是引导大语言模型（LLM）生成输出的技术，而 Agent 是能自主决策和执行的智能实体，两者在 AI 系统中密切相关：prompt engineering 可以优化 Agent 中 LLM 的输入提示，提升其决策和执行效果，共同构建高效 AI 应用。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "function calling 与 tool 的区别",
+        "reason": "Prompt engineering 涉及设计输入提示以引导 LLM 输出，而 function calling 是 LLM 调用外部功能的机制，两者都关注如何有效利用 LLM 的能力；prompt engineering 可以用于优化 function calling 的提示，确保 LLM 准确调用工具，从而提升 AI 系统的交互效率。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "Agent vs. Workflow",
+    "core_takeaway": "Agent 比 Workflow 更智能，因为它能自主决策、适应变化，而 Workflow 是预定义的、静态的执行序列。",
+    "mental_model": "Workflow 像一份固定的食谱，每一步都提前写好；Agent 像一位经验丰富的厨师，能根据食材和口味实时调整烹饪。",
+    "why_it_matters": "理解这个区别有助于在 AI 系统中选择合适的方法：Workflow 适合可预测任务，Agent 适合复杂、动态的环境，推动智能系统向更灵活、自主的方向发展。",
+    "boundary": [
+      "Agent 不是简单的自动化脚本，它涉及感知、推理和行动循环",
+      "不要和传统程序混淆，Agent 强调在不确定环境中的自主性"
+    ],
+    "connects_to": [
+      {
+        "topic": "Reinforcement Learning",
+        "relation": "补充",
+        "why": "Agent 的决策能力常通过强化学习训练，以实现自适应行为"
+      },
+      {
+        "topic": "Automation",
+        "relation": "对比",
+        "why": "Workflow 是自动化的一种形式，但 Agent 在自动化基础上增加了智能和灵活性"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能认为 Agent 只是更复杂的 Workflow，但实际上 Agent 的核心是自主性和学习能力",
+      "用户可能混淆 Agent 和 AI 模型，Agent 是应用层面的概念，而 AI 模型是底层技术"
+    ],
+    "next_best_question": [
+      "Agent 如何通过感知-行动循环实现自主决策？",
+      "在什么场景下 Workflow 比 Agent 更合适，为什么？"
+    ],
+    "id": "81ffd653-f3c4-440c-ab85-142dbc738681",
+    "created_at": "2026-04-22T20:22:31",
+    "related_cards": [
+      {
+        "topic": "Agent与Workflow的区别",
+        "reason": "新卡片直接讨论 Agent 与 Workflow 的对比，而此已有卡片也聚焦于两者的区别，主题高度一致，核心内容都涉及自主决策与预定义流程的对比。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "Agent",
+        "reason": "新卡片强调 Agent 的智能特性，此已有卡片提供了 Agent 的基本定义和重要性，有助于从更基础的角度理解 Agent 的概念，为新卡片提供背景支持。",
+        "relation_type": "补充"
+      }
+    ]
   }
 ]

@@ -37,8 +37,8 @@ def extract_json(text: str):
         return match.group(0)
     return None
 
+
 def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
-    # 🔥 保证 connects_to 结构合法（必须有 topic）
     fixed = []
     for item in card.get("connects_to", []):
         if isinstance(item, dict) and "topic" in item:
@@ -46,11 +46,15 @@ def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
 
     card["connects_to"] = fixed
 
-    # 🔥 防止字段缺失（兜底）
+    card.setdefault("mental_model", "")
+    card.setdefault("boundary", [])
     card.setdefault("likely_confusion", [])
     card.setdefault("next_best_question", [])
 
     return card
+
+def normalize_topic(topic: str) -> str:
+    return topic.lower().replace("（", "(").replace("）", ")").strip()
 
 def build_knowledge_card(text: str) -> dict[str, Any]:
     client = OpenAI(base_url="https://api.deepseek.com")
@@ -65,14 +69,21 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
 1. 所有输出必须使用简体中文。
 2. 不要只解释“它是什么”，而要帮助用户形成理解和连接。
 3. 输出要尽量贴近 AI / LLM / Agent 语境，不要跑到无关领域。
-4. 不要泛泛而谈，要尽量有“启发感”。
-5. 只返回合法 JSON，不要输出任何额外说明。
+4. 不要泛泛而谈，要尽量有启发感。
+5. mental_model 要像一句“帮助理解的类比或直觉解释”。
+6. boundary 要写清这个概念不是什么，或不该和什么混淆。
+7. 只返回合法 JSON，不要输出任何额外说明。
 
 输出格式：
 {
   "topic": "主题",
   "core_takeaway": "一句话抓住这个概念最重要的点",
+  "mental_model": "一个帮助理解的类比、直觉解释或口语化理解",
   "why_it_matters": "这个概念为什么值得理解，它在整个知识体系里为什么重要",
+  "boundary": [
+    "这个概念不是什么",
+    "不要和什么混淆"
+  ],
   "connects_to": [
     {
       "topic": "相关主题",
@@ -90,6 +101,7 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
   ]
 }
 """
+    
 
     response = client.chat.completions.create(
         model=model,
@@ -101,11 +113,14 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
         max_tokens=700,
     )
 
-    content = response.choices[0].message.content
-    if not content:
-        raise RuntimeError("The LLM returned an empty response.")
 
-    return json.loads(content)
+    content = response.choices[0].message.content
+    json_str = extract_json(content)
+
+    if not json_str:
+        raise RuntimeError("No valid JSON found in LLM response.")
+
+    return json.loads(json_str)
 
 
 def find_related_cards(new_card: dict[str, Any], existing_cards: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -115,9 +130,8 @@ def find_related_cards(new_card: dict[str, Any], existing_cards: list[dict[str, 
     # 🔥 过滤掉“同 topic 的卡片”（避免自己推荐自己）
     existing_cards = [
         c for c in existing_cards
-        if c.get("topic") != new_card.get("topic")
+        if normalize_topic(c.get("topic", "")) != normalize_topic(new_card.get("topic", ""))
     ]
-
     sample_cards = [
         {
             "topic": c.get("topic", ""),
@@ -191,7 +205,25 @@ def find_related_cards(new_card: dict[str, Any], existing_cards: list[dict[str, 
 
     try:
         parsed = json.loads(json_str)
-        return parsed.get("related_cards", [])
+        results = parsed.get("related_cards", [])
+
+# 🔥 第1步：过滤掉和新卡片相同的 topic
+        filtered = [
+            item for item in results
+            if normalize_topic(item.get("topic", "")) != normalize_topic(new_card.get("topic", ""))
+        ]
+
+# 🔥 第2步：去重（防止 MCP 两种写法）
+        seen = set()
+        unique = []
+
+        for item in filtered:
+            key = normalize_topic(item.get("topic", ""))
+            if key not in seen:
+                seen.add(key)
+                unique.append(item)
+
+        return unique
     except json.JSONDecodeError:
         return [
             {

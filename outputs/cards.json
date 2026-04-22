@@ -277,5 +277,245 @@
         }
       ]
     }
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部工具或函数来执行特定任务的能力，从而扩展其能力范围。",
+    "why_it_matters": "这个概念值得理解，因为它连接了 LLM 的推理能力和实际应用，是构建智能代理（Agent）和实现复杂任务自动化的关键，使 AI 从纯文本生成转向可操作的系统。",
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "function calling 是 Agent 实现工具使用和任务执行的核心机制，帮助 Agent 与环境交互。"
+      },
+      {
+        "topic": "LLM 推理",
+        "relation": "上下位",
+        "why": "function calling 依赖于 LLM 的推理能力来识别何时调用函数，是 LLM 能力的下位应用。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "对比",
+        "why": "function calling 与传统的 API 调用不同，它通过 LLM 的语义理解来动态选择和调用函数，更智能和灵活。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能将 function calling 与简单的 API 调用混淆，认为它只是自动化脚本，而忽略了 LLM 的语义理解和决策作用。",
+      "用户可能误以为 function calling 是 LLM 内置的功能，实际上它通常需要外部系统或框架（如 OpenAI 的 function calling 特性）来实现。"
+    ],
+    "next_best_question": [
+      "function calling 在 Agent 架构中如何与其他组件（如记忆、规划）协同工作？",
+      "实现 function calling 时，如何确保 LLM 正确选择函数并处理错误或异常情况？"
+    ],
+    "id": "b74596ea-c513-4c76-9b6a-d97d081ba92e",
+    "created_at": "2026-04-22T19:27:21",
+    "related": {
+      "related": [
+        {
+          "topic": "AI Agent",
+          "reason": "function calling 是构建智能代理的关键能力，使 LLM 能够调用外部工具来执行任务，从而扩展 Agent 的实际应用范围。",
+          "relation_type": "补充"
+        },
+        {
+          "topic": "Agent与LLM之间的关系",
+          "reason": "function calling 连接了 LLM 的推理能力和 Agent 的自动化任务执行，解释了 LLM 如何通过调用函数来支持 Agent 的运作。",
+          "relation_type": "补充"
+        }
+      ]
+    }
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部工具或函数来执行特定任务（如搜索、计算、API 调用）的机制。",
+    "why_it_matters": "它在整个知识体系中重要，因为它连接了 LLM 的推理能力与外部世界的执行能力，是实现 AI Agent 自主行动和解决复杂问题的关键桥梁，避免了 LLM 仅停留在文本生成层面。",
+    "connects_to": [
+      {
+        "topic": "AI Agent",
+        "relation": "上下位",
+        "why": "function calling 是 AI Agent 的核心组件之一，使 Agent 能够感知环境、做出决策并执行动作，从而完成实际任务。"
+      },
+      {
+        "topic": "工具使用（Tool Use）",
+        "relation": "补充",
+        "why": "function calling 是实现工具使用的具体技术手段，强调 LLM 如何选择和调用工具，而工具使用更广泛地涵盖 Agent 与外部系统的交互策略。"
+      },
+      {
+        "topic": "提示工程（Prompt Engineering）",
+        "relation": "对比",
+        "why": "提示工程侧重于通过文本提示引导 LLM 输出，而 function calling 则涉及结构化调用，两者结合可以提升 LLM 的实用性和准确性，但方法不同。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能将 function calling 与普通 API 调用混淆，但 function calling 特指 LLM 在理解用户意图后，动态选择并触发函数的过程，而非简单的程序调用。",
+      "用户可能误以为 function calling 是 LLM 的内置功能，实际上它通常需要外部框架或接口（如 OpenAI 的 function calling API）来实现，LLM 本身不直接执行代码。"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何与 LLM 的推理循环结合，以实现更智能的 Agent 行为？",
+      "有哪些常见的 function calling 实现框架或工具，它们在不同场景下的优缺点是什么？"
+    ],
+    "id": "612e0598-9a59-44a4-bc5f-0340eb219984",
+    "created_at": "2026-04-22T19:33:16",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "新卡片与已有卡片主题相同，都讨论 function calling 的定义和重要性，新卡片提供了更详细的解释和扩展，已有卡片可作为基础参考。",
+        "relation_type": "补充"
+      },
+      {
+        "topic": "Agent与LLM之间的关系",
+        "reason": "新卡片提到 function calling 是实现 AI Agent 的关键桥梁，与已有卡片主题相关，因为 Agent 依赖于 LLM 的 function calling 来执行外部任务。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部工具或函数的能力，从而扩展其功能范围，实现更复杂的任务执行。",
+    "why_it_matters": "这个概念在 AI / Agent 知识体系中至关重要，因为它解决了 LLM 的局限性，如无法访问实时数据或执行具体操作，使 LLM 从纯文本生成器转变为可交互的智能代理，推动 AI 应用向更实际和动态的场景发展。",
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "function calling 是构建 Agent 的核心组件之一，Agent 利用 function calling 来调用工具，实现自主决策和任务执行，从而增强其智能性和实用性。"
+      },
+      {
+        "topic": "LLM 局限性",
+        "relation": "纠偏",
+        "why": "function calling 直接针对 LLM 的局限性，如缺乏实时信息或物理操作能力，通过外部调用弥补这些不足，帮助用户更全面地理解 LLM 的潜力与边界。"
+      },
+      {
+        "topic": "工具调用（Tool Use）",
+        "relation": "上下位",
+        "why": "function calling 是工具调用的一种具体实现方式，它属于更广泛的工具调用概念，强调 LLM 如何与外部系统交互，是 AI 集成外部资源的关键技术。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能将 function calling 与简单的 API 调用混淆，误以为它只是技术实现，而忽略了其在 AI 代理中作为智能决策和任务执行的核心角色。",
+      "用户可能认为 function calling 是 LLM 的固有功能，而实际上它是通过特定接口（如 OpenAI 的 function calling 特性）或框架（如 LangChain）实现的扩展能力。"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何与 Agent 的决策流程结合，以确保调用是安全和高效的？",
+      "除了 OpenAI 的 function calling，还有哪些常见的框架或方法可以实现类似的功能，它们各有什么优缺点？"
+    ],
+    "id": "91f192a9-21c6-40bc-8dc3-31ded724f9d1",
+    "created_at": "2026-04-22T19:34:12",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "新卡片与已有卡片主题相同，都定义了function calling作为LLM调用外部工具或函数的能力，核心要点和重要性高度一致，用于扩展LLM功能并实现智能代理。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "system prompt 与 user prompt 的区别",
+    "core_takeaway": "system prompt 设定 AI 的长期角色和规则，而 user prompt 提供具体任务和上下文，两者共同引导 AI 的响应。",
+    "why_it_matters": "理解这个区别是构建有效 AI 交互的基础，它帮助用户控制 AI 的行为，避免误解，并优化在 LLM 和 Agent 应用中的性能。",
+    "connects_to": [
+      {
+        "topic": "prompt engineering",
+        "relation": "补充",
+        "why": "system prompt 和 user prompt 是 prompt engineering 的核心工具，用于精细调整 AI 输出。"
+      },
+      {
+        "topic": "AI 角色扮演",
+        "relation": "上下位",
+        "why": "system prompt 常用于定义 AI 的角色，而 user prompt 则在这个角色下执行具体操作。"
+      },
+      {
+        "topic": "上下文管理",
+        "relation": "对比",
+        "why": "system prompt 提供静态上下文，而 user prompt 引入动态变化，两者共同管理对话流程。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 system prompt 和 user prompt 可以互换，但实际上 system prompt 更稳定，user prompt 更灵活。",
+      "用户可能混淆两者在影响 AI 行为上的权重，system prompt 通常优先级更高，但具体实现可能因模型而异。"
+    ],
+    "next_best_question": [
+      "在实际应用中，如何平衡 system prompt 和 user prompt 来优化 AI 的响应质量？",
+      "对于不同的 AI 模型（如 GPT、Claude），system prompt 和 user prompt 的设计有何最佳实践？"
+    ],
+    "id": "b6060c57-5de3-46e0-9b07-00281ffcaaff",
+    "created_at": "2026-04-22T19:34:47",
+    "related_cards": []
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部函数或工具的能力，从而扩展其能力边界，从纯文本生成转向实际执行任务。",
+    "why_it_matters": "这个概念是构建智能代理（Agent）和实现 AI 应用落地的关键，因为它解决了 LLM 的局限性（如无法访问实时数据或执行具体操作），使 AI 能够与现实世界交互，推动从对话到行动的转变。",
+    "connects_to": [
+      {
+        "topic": "Agent",
+        "relation": "补充",
+        "why": "function calling 是 Agent 实现自主决策和执行任务的核心机制之一，Agent 通过调用函数来完成任务，如查询数据库或控制设备。"
+      },
+      {
+        "topic": "工具使用（Tool Use）",
+        "relation": "对比",
+        "why": "function calling 是工具使用的一种具体实现方式，但更侧重于 LLM 如何结构化地调用函数，而工具使用更广义地包括各种外部资源。"
+      },
+      {
+        "topic": "提示工程（Prompt Engineering）",
+        "relation": "上下位",
+        "why": "function calling 依赖于精心设计的提示来引导 LLM 识别何时以及如何调用函数，是提示工程在应用层面的延伸。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能将 function calling 与 API 调用混淆，但 function calling 是 LLM 主动调用函数的过程，而 API 调用更泛指程序间的通信。",
+      "用户可能误以为 function calling 是 LLM 的固有功能，实际上它需要额外的系统设计和集成，如 OpenAI 的 function calling 特性。"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何设计和优化，以确保 LLM 能准确调用函数并处理错误？",
+      "function calling 与 Agent 的自主性有何关系，它如何影响 AI 系统的可靠性和安全性？"
+    ],
+    "id": "bbb5eada-80e8-469f-ba53-34c807e570bb",
+    "created_at": "2026-04-22T19:40:31",
+    "related_cards": [
+      {
+        "topic": "Agent与LLM之间的关系",
+        "reason": "新卡片的核心要点提到function calling是构建智能代理（Agent）的关键，因为它扩展了LLM的能力，使AI能够与现实世界交互，这与Agent与LLM之间的关系主题直接相关，涉及LLM如何通过工具调用支持Agent功能。",
+        "relation_type": "补充"
+      }
+    ]
+  },
+  {
+    "topic": "system prompt 与 user prompt 的区别",
+    "core_takeaway": "system prompt 是 AI 的长期指令，定义其角色和行为边界；user prompt 是用户的即时输入，触发具体任务和响应。",
+    "why_it_matters": "理解这两者的区别是构建有效 AI 交互的基础，它帮助用户掌握如何通过 system prompt 设定 AI 的上下文和限制，以及如何通过 user prompt 引导 AI 在特定场景下执行任务，从而优化 Agent 设计和对话效果。",
+    "connects_to": [
+      {
+        "topic": "prompt engineering",
+        "relation": "上下位",
+        "why": "system prompt 和 user prompt 是 prompt engineering 的核心组成部分，理解它们的区别有助于设计更精准的提示来提升 AI 性能。"
+      },
+      {
+        "topic": "context window",
+        "relation": "补充",
+        "why": "system prompt 通常占用上下文窗口的固定部分，影响 AI 对 user prompt 的处理，理解区别有助于管理上下文限制。"
+      },
+      {
+        "topic": "fine-tuning",
+        "relation": "对比",
+        "why": "system prompt 类似于微调中的预定义行为，而 user prompt 是动态输入，区别在于一个是静态设定，一个是实时交互。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能混淆 system prompt 和 user prompt 的作用，误以为 user prompt 可以完全覆盖 system prompt 的设定，实际上 system prompt 通常具有更高优先级或基础约束。",
+      "用户可能认为 system prompt 只在初始化时有效，而忽略了它在整个对话中持续影响 AI 的响应和行为边界。"
+    ],
+    "next_best_question": [
+      "如何设计一个有效的 system prompt 来确保 AI 在复杂任务中保持一致性？",
+      "在 multi-turn 对话中，user prompt 如何与 system prompt 协同工作以优化 Agent 的决策过程？"
+    ],
+    "id": "3b4a2027-e26c-48f3-b7c3-0828d2088c7f",
+    "created_at": "2026-04-22T19:41:07",
+    "related_cards": [
+      {
+        "topic": "function calling",
+        "reason": "新卡片讨论 system prompt 和 user prompt 在 AI 交互中的角色，这与 function calling 相关，因为 function calling 涉及 LLM 如何响应 user prompt 来调用外部工具，而 system prompt 可能设定调用行为的边界，共同构成 Agent 设计的基础。",
+        "relation_type": "补充"
+      }
+    ]
   }
 ]

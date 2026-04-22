@@ -1,22 +1,22 @@
 import argparse
 import json
-import os
 import sys
+import uuid
+from datetime import datetime
 from typing import Any
 
 from openai import OpenAI
-from notes_store import save_card
-from notes_store import load_cards
+from notes_store import save_card, load_cards
 
 
 def read_input_text() -> str:
     parser = argparse.ArgumentParser(
-        description="Turn text into a structured knowledge card JSON."
+        description="Turn text into a structured learning card JSON."
     )
     parser.add_argument(
         "text",
         nargs="?",
-        help="Text to summarize. If omitted, the script reads from standard input.",
+        help="Text to analyze. If omitted, the script reads from standard input.",
     )
     args = parser.parse_args()
 
@@ -37,40 +37,59 @@ def extract_json(text: str):
         return match.group(0)
     return None
 
+def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
+    # 🔥 保证 connects_to 结构合法（必须有 topic）
+    fixed = []
+    for item in card.get("connects_to", []):
+        if isinstance(item, dict) and "topic" in item:
+            fixed.append(item)
+
+    card["connects_to"] = fixed
+
+    # 🔥 防止字段缺失（兜底）
+    card.setdefault("likely_confusion", [])
+    card.setdefault("next_best_question", [])
+
+    return card
+
 def build_knowledge_card(text: str) -> dict[str, Any]:
-    client = OpenAI(
-        base_url="https://api.deepseek.com",
-    )
+    client = OpenAI(base_url="https://api.deepseek.com")
     model = "deepseek-chat"
-    
+
     system_prompt = """
-    你是一个帮助用户构建 AI / Agent 知识体系的中文学习助手。
+你是一个帮助用户构建 AI / Agent 知识体系的中文学习助手。
 
-    你的任务不是给出泛泛的百科定义，而是帮助用户真正理解一个概念在整个知识体系中的位置。
+你的任务不是给出泛泛的百科定义，而是帮助用户真正理解一个概念在整个知识体系中的位置，并推动用户继续思考。
 
-    要求：
+要求：
 1. 所有输出必须使用简体中文。
-2. 不要只回答“它是什么”，还要回答：
-   - 为什么会有它
-   - 它在系统里起什么作用
-   - 它和哪些概念有关
-   - 它最容易和什么搞混
-3. 解释必须贴近 AI / LLM / Agent 语境，不要跑到无关领域。
-4. 输出要有“帮助继续学习”的价值，而不是只下定义。
+2. 不要只解释“它是什么”，而要帮助用户形成理解和连接。
+3. 输出要尽量贴近 AI / LLM / Agent 语境，不要跑到无关领域。
+4. 不要泛泛而谈，要尽量有“启发感”。
 5. 只返回合法 JSON，不要输出任何额外说明。
 
 输出格式：
 {
   "topic": "主题",
-  "what_it_is": "它是什么",
-  "why_it_exists": "为什么会有这个东西",
-  "what_it_does": "它在系统里起什么作用",
-  "related_to": ["相关概念1", "相关概念2"],
-  "common_confusions": ["容易混淆点1", "容易混淆点2"],
-  "my_next_question": ["建议继续追问的问题1", "建议继续追问的问题2"]
+  "core_takeaway": "一句话抓住这个概念最重要的点",
+  "why_it_matters": "这个概念为什么值得理解，它在整个知识体系里为什么重要",
+  "connects_to": [
+    {
+      "topic": "相关主题",
+      "relation": "补充/对比/纠偏/上下位",
+      "why": "为什么和这个主题相关"
+    }
+  ],
+  "likely_confusion": [
+    "用户最容易搞混的点1",
+    "用户最容易搞混的点2"
+  ],
+  "next_best_question": [
+    "用户下一步最值得追问的问题1",
+    "用户下一步最值得追问的问题2"
+  ]
 }
 """
-    
 
     response = client.chat.completions.create(
         model=model,
@@ -79,7 +98,7 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
             {"role": "user", "content": text},
         ],
         response_format={"type": "json_object"},
-        max_tokens=512,
+        max_tokens=700,
     )
 
     content = response.choices[0].message.content
@@ -89,23 +108,31 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
     return json.loads(content)
 
 
-
-def find_related_card(new_card, existing_cards):
+def find_related_cards(new_card: dict[str, Any], existing_cards: list[dict[str, Any]]) -> list[dict[str, str]]:
     if not existing_cards:
-        return {"related": []}
-
+        return []
+    
+    # 🔥 过滤掉“同 topic 的卡片”（避免自己推荐自己）
+    existing_cards = [
+        c for c in existing_cards
+        if c.get("topic") != new_card.get("topic")
+    ]
 
     sample_cards = [
-    {
-        "topic": c.get("topic", ""),
-        "keywords": c.get("keywords", [])
-    }
-    for c in existing_cards[-5:]
-]
+        {
+            "topic": c.get("topic", ""),
+            "core_takeaway": c.get("core_takeaway", ""),
+            "why_it_matters": c.get("why_it_matters", "")
+        }
+        for c in existing_cards[-5:]
+    ]
+
     new_card_simple = {
-    "topic": new_card.get("topic"),
-    "keywords": new_card.get("keywords", [])
-}
+        "topic": new_card.get("topic", ""),
+        "core_takeaway": new_card.get("core_takeaway", ""),
+        "why_it_matters": new_card.get("why_it_matters", "")
+    }
+
     client = OpenAI(base_url="https://api.deepseek.com")
 
     prompt = f"""
@@ -114,15 +141,15 @@ def find_related_card(new_card, existing_cards):
 任务：
 找出最相关的 1~3 个已有卡片，并说明为什么相关。
 
-⚠️ 强制要求：
+强制要求：
 1. 只返回 JSON
 2. 不要输出任何解释文字
 3. 不要使用 markdown
-4. 如果没有合适的，返回：{{"related": []}}
+4. 如果没有合适的，返回：{{"related_cards": []}}
 
 输出格式：
 {{
-  "related": [
+  "related_cards": [
     {{
       "topic": "卡片主题",
       "reason": "为什么相关",
@@ -141,37 +168,38 @@ def find_related_card(new_card, existing_cards):
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-    {
-        "role": "system",
-        "content": "你是一个严格输出JSON的助手，不允许输出任何解释或多余文本。"
-    },
-    {"role": "user", "content": prompt}
-],
+            {
+                "role": "system",
+                "content": "你是一个严格输出 JSON 的助手，不允许输出任何解释或多余文本。"
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ],
         response_format={"type": "json_object"},
-        max_tokens=200
+        max_tokens=250,
     )
 
     content = response.choices[0].message.content
-
     if not content:
-        return {"related": []}
+        return []
 
     json_str = extract_json(content)
     if not json_str:
-        return{"related": []}
-    # 🔥 核心：容错解析
+        return []
+
     try:
-        return json.loads(json_str)
+        parsed = json.loads(json_str)
+        return parsed.get("related_cards", [])
     except json.JSONDecodeError:
-        return {
-            "related": [
-                {
-                    "topic": "解析失败",
-                    "reason": f"无法解析JSON：{content[:100]}",
-                    "relation_type": "error"
-                }
-            ]
-        }
+        return [
+            {
+                "topic": "解析失败",
+                "reason": f"无法解析 JSON：{content[:100]}",
+                "relation_type": "error"
+            }
+        ]
 
 
 def main() -> None:
@@ -179,19 +207,24 @@ def main() -> None:
     if not text:
         raise ValueError("Input text cannot be empty.")
 
-
     card = build_knowledge_card(text)
+    card = normalize_card(card)
+
+    card["id"] = str(uuid.uuid4())
+    card["created_at"] = datetime.now().isoformat(timespec="seconds")
 
     existing_cards = load_cards()
-    related = find_related_card(card, existing_cards)
-    card["related"] = related
-    
-    print("\n推荐关联：")
+    related_cards = find_related_cards(card, existing_cards)
+    card["related_cards"] = related_cards
 
-    if related and "related" in related:
-        for item in related["related"]:
+    print("\n推荐关联：")
+    if related_cards:
+        for item in related_cards:
             print(f"- {item['topic']}（{item['relation_type']}）")
             print(f"  原因：{item['reason']}")
+    else:
+        print("- 暂无")
+
     save_card(card)
     print(json.dumps(card, indent=2, ensure_ascii=False))
 

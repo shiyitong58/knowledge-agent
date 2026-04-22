@@ -857,5 +857,108 @@
         "reason": "similarity=0.793"
       }
     ]
+  },
+  {
+    "topic": "MCP（Model Context Protocol）",
+    "core_takeaway": "MCP是一个标准化协议，用于连接AI模型与外部工具和数据源，实现更灵活和安全的交互。",
+    "mental_model": "想象MCP就像AI的“万能插座”，让不同的AI模型能轻松插上各种外部工具（如数据库、API、文件系统），而无需自己重新造轮子。",
+    "why_it_matters": "在AI/Agent知识体系中，MCP解决了模型与外部环境交互的碎片化问题，提升了可扩展性和安全性，是构建复杂AI应用的关键基础设施。",
+    "boundary": [
+      "MCP不是一个新的AI模型或算法，而是一个通信协议。",
+      "不要和模型训练或推理框架混淆，它专注于连接和集成。"
+    ],
+    "connects_to": [
+      {
+        "topic": "Agent架构",
+        "relation": "补充",
+        "why": "MCP为Agent提供了标准化的工具调用接口，使Agent能更高效地利用外部资源。"
+      },
+      {
+        "topic": "API集成",
+        "relation": "对比",
+        "why": "MCP比传统API集成更通用和标准化，减少了定制化开发的复杂度。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为MCP是某个特定AI模型的组成部分，而不是一个独立的协议。",
+      "用户可能混淆MCP与类似协议（如OpenAI的Function Calling），但MCP更强调跨模型和工具的通用性。"
+    ],
+    "next_best_question": [
+      "MCP在实际应用中如何提升AI系统的安全性和可维护性？",
+      "MCP与其他工具调用协议（如LangChain Tools）相比，有哪些独特优势？"
+    ],
+    "id": "62172eff-826c-4dea-935d-a58aff27f6e6",
+    "created_at": "2026-04-22T22:14:39",
+    "related_cards": [
+      {
+        "topic": "MCP与API的区别",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.820"
+      },
+      {
+        "topic": "function calling",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.647"
+      },
+      {
+        "topic": "Agent",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.625"
+      }
+    ]
+  },
+  {
+    "topic": "function calling",
+    "core_takeaway": "function calling 是让大语言模型（LLM）能够调用外部工具或函数的能力，从而扩展其功能范围。",
+    "mental_model": "就像给一个聪明的助手配上了一套工具箱，助手不仅能回答问题，还能根据你的指令拿起工具（比如计算器、数据库、API）来执行具体任务。",
+    "why_it_matters": "它在 AI 知识体系中至关重要，因为它连接了 LLM 的通用语言理解能力和外部世界的具体操作，是实现智能体（Agent）和自动化工作流的基础。",
+    "boundary": [
+      "function calling 不是 LLM 内部的计算或推理过程，而是对外部系统的调用接口。",
+      "不要和 LLM 的文本生成或对话能力混淆，它侧重于执行动作而非仅产生文本。"
+    ],
+    "connects_to": [
+      {
+        "topic": "智能体（Agent）",
+        "relation": "补充",
+        "why": "function calling 是构建智能体的核心组件，使智能体能够感知环境并采取行动。"
+      },
+      {
+        "topic": "工具使用（Tool Use）",
+        "relation": "上下位",
+        "why": "function calling 是实现工具使用的具体机制，工具使用是更广泛的概念。"
+      },
+      {
+        "topic": "API 集成",
+        "relation": "对比",
+        "why": "function calling 通常涉及 API 调用，但更侧重于 LLM 如何动态选择和调用这些 API。"
+      }
+    ],
+    "likely_confusion": [
+      "用户可能误以为 function calling 是 LLM 自己执行所有任务，而实际上它依赖于外部函数或工具。",
+      "用户可能混淆 function calling 和简单的文本提示，忽略其作为动作执行桥梁的作用。"
+    ],
+    "next_best_question": [
+      "function calling 在实际应用中如何设计和优化，以确保可靠性和效率？",
+      "function calling 与智能体的其他组件（如规划、记忆）如何协同工作？"
+    ],
+    "id": "d9b9272f-78ca-48f0-916e-783af3d3f7be",
+    "created_at": "2026-04-22T22:16:03",
+    "related_cards": [
+      {
+        "topic": "function calling 与 tool 的区别",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.835"
+      },
+      {
+        "topic": "Prompt Engineering",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.753"
+      },
+      {
+        "topic": "RAG",
+        "relation_type": "语义相似",
+        "reason": "similarity=0.693"
+      }
+    ]
   }
 ]

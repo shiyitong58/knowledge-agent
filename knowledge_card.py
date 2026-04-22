@@ -3,6 +3,7 @@ import json
 import sys
 import uuid
 import os
+import re
 from datetime import datetime
 from typing import Any
 
@@ -55,6 +56,16 @@ def normalize_card(card: dict[str, Any]) -> dict[str, Any]:
     return card
 
 
+def normalize_topic(topic: str) -> str:
+    topic = topic.lower().strip()
+    topic = topic.replace("（", "(").replace("）", ")")
+    topic = re.sub(r"\s+", " ", topic)
+
+    # 去掉括号内容，保留主干概念
+    topic_main = re.sub(r"\(.*?\)", "", topic).strip()
+
+    return topic_main
+
 def build_text(card):
     return f"""
 主题: {card.get("topic", "")}
@@ -62,8 +73,7 @@ def build_text(card):
 意义: {card.get("why_it_matters", "")}
 """
 
-def normalize_topic(topic: str) -> str:
-    return topic.lower().replace("（", "(").replace("）", ")").strip()
+
 
 def build_knowledge_card(text: str) -> dict[str, Any]:
     # client = OpenAI(base_url="https://api.deepseek.com")
@@ -135,6 +145,8 @@ def build_knowledge_card(text: str) -> dict[str, Any]:
 
     return json.loads(json_str)
 
+
+
 def find_related_cards(new_card, existing_cards, top_k=3):
     if not existing_cards:
         return []
@@ -162,15 +174,35 @@ def find_related_cards(new_card, existing_cards, top_k=3):
     scored.sort(key=lambda x: x[0], reverse=True)
 
     results = []
+    seen = set()
+    new_topic_norm = normalize_topic(new_card.get("topic", ""))
 
-    for score, c in scored[:top_k]:
+    for score, c in scored:
+        topic = c.get("topic", "")
+        topic_norm = normalize_topic(topic)
+
+    # 1. 去掉和当前新卡片本身重复的概念
+        if topic_norm == new_topic_norm:
+            continue
+
+    # 2. 去掉召回结果里彼此重复的概念
+        if topic_norm in seen:
+            continue
+
+        seen.add(topic_norm)
+
         results.append({
-            "topic": c.get("topic", ""),
+            "topic": topic,
             "relation_type": "语义相似",
             "reason": f"similarity={score:.3f}"
         })
 
+        if len(results) >= top_k:
+            break
+
     return results
+
+    
 
 
 
